@@ -1,0 +1,74 @@
+# ==============================================================================
+# EuroSAT-Sentinel: Explainable Deep Learning for Satellite Land-Use &
+# Environmental Monitoring — Phase 1 Configuration
+# ==============================================================================
+
+project:
+  name: "EuroSAT-Sentinel"
+  phase: "Phase 1 — Foundation and Initial Implementation"
+  seed: 42
+  version: "1.0.0"
+
+data:
+  dataset_name: "EuroSAT_RGB"
+  root_dir: "data/raw"
+  splits_dir: "data/splits"
+  image_size: 64
+  model_input_size: 128
+  num_classes: 10
+  class_names:
+    - "AnnualCrop"
+    - "Forest"
+    - "HerbaceousVegetation"
+    - "Highway"
+    - "Industrial"
+    - "Pasture"
+    - "PermanentCrop"
+    - "Residential"
+    - "River"
+    - "SeaLake"
+  # For Phase 1 rapid & reproducible execution on consumer laptop GPU/CPU,
+  # max_samples_per_class controls stratified subsampling (set to null for full 27,000 images).
+  max_samples_per_class: 300
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  num_workers: 0
+  pin_memory: true
+
+augmentation:
+  random_horizontal_flip: true
+  random_vertical_flip: true
+  random_rotation_degrees: 90
+  color_jitter:
+    brightness: 0.15
+    contrast: 0.15
+    saturation: 0.15
+    hue: 0.05
+  imagenet_norm:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+model:
+  architecture: "resnet18" # Options: "resnet18", "mobilenet_v3_small", "custom_cnn"
+  pretrained: true
+  dropout_rate: 0.3
+  freeze_backbone_epochs: 2
+
+training:
+  batch_size: 32
+  epochs: 8
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  optimizer: "adamw"
+  scheduler: "cosine"
+  label_smoothing: 0.05
+  early_stopping_patience: 5
+  checkpoint_dir: "outputs/checkpoints"
+  best_model_name: "best_eurosat_model.pth"
+
+evaluation:
+  figures_dir: "outputs/figures"
+  metrics_dir: "outputs/metrics"
+  gradcam_target_layer: "layer4"
+  num_visualized_samples: 12

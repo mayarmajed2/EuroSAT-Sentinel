@@ -1,0 +1,10 @@
+{
+  "model": "RandomForestClassifier (200 trees, Color Histogram + Spatial Gradient Features)",
+  "feature_dimension": 60,
+  "training_time_sec": 12.08,
+  "val_accuracy": 0.7644,
+  "test_accuracy": 0.7667,
+  "test_precision_macro": 0.7668,
+  "test_recall_macro": 0.7667,
+  "test_f1_macro": 0.7633
+}

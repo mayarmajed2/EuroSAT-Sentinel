@@ -1,0 +1,44 @@
+{
+  "dataset_name": "EuroSAT_RGB",
+  "total_images_analyzed": 3000,
+  "split_sizes": {
+    "train": 2100,
+    "val": 450,
+    "test": 450
+  },
+  "num_classes": 10,
+  "class_distribution_total": {
+    "AnnualCrop": 300,
+    "Forest": 300,
+    "HerbaceousVegetation": 300,
+    "Highway": 300,
+    "Industrial": 300,
+    "Pasture": 300,
+    "PermanentCrop": 300,
+    "Residential": 300,
+    "River": 300,
+    "SeaLake": 300
+  },
+  "imbalance_ratio_max_to_min": 1.0,
+  "unique_widths": [
+    64
+  ],
+  "unique_heights": [
+    64
+  ],
+  "image_modes": [
+    "RGB"
+  ],
+  "empirical_rgb_mean": [
+    0.3466,
+    0.3848,
+    0.4119
+  ],
+  "empirical_rgb_std": [
+    0.0937,
+    0.0679,
+    0.0578
+  ],
+  "corrupted_files_count": 0,
+  "data_leakage_check": "PASSED (0 overlapping files across train/val/test)"
+}

@@ -1,0 +1,21 @@
+# Core Deep Learning & Computer Vision
+torch>=2.2.0
+torchvision>=0.17.0
+numpy>=1.26.0
+pillow>=10.2.0
+
+# Data Science, Evaluation & Classical ML Baseline
+pandas>=2.2.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+
+# Visualization & Explainability (Grad-CAM)
+matplotlib>=3.8.0
+
+# Interactive Demo UI
+gradio>=4.20.0
+
+# Configuration, Utilities & Testing
+pyyaml>=6.0.1
+tqdm>=4.66.0
+pytest>=8.0.0
