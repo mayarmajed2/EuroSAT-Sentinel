@@ -99,16 +99,19 @@ def overlay_heatmap(
     rgb_image: np.ndarray,
     heatmap: np.ndarray,
     alpha: float = 0.45,
+    colormap_name: str = "jet",
 ) -> np.ndarray:
-    """Overlay a normalized [0, 1] Grad-CAM heatmap onto an RGB uint8 image using the 'jet' colormap."""
+    """Overlay a normalized [0, 1] Grad-CAM heatmap onto an RGB uint8 image using the specified colormap."""
+    alpha = float(np.clip(alpha, 0.0, 1.0))
     if rgb_image.shape[:2] != heatmap.shape[:2]:
-        heatmap_pil = Image.fromarray(np.uint8(255 * heatmap)).resize(
+        heatmap_pil = Image.fromarray(np.uint8(255 * np.clip(heatmap, 0.0, 1.0))).resize(
             (rgb_image.shape[1], rgb_image.shape[0]),
             resample=Image.BILINEAR,
         )
         heatmap = np.asarray(heatmap_pil, dtype=np.float32) / 255.0
 
-    colormap = matplotlib.colormaps["jet"] if hasattr(matplotlib, "colormaps") else cm.get_cmap("jet")
+    cmap_key = colormap_name if colormap_name in {"jet", "inferno", "viridis", "plasma", "magma", "turbo"} else "jet"
+    colormap = matplotlib.colormaps[cmap_key] if hasattr(matplotlib, "colormaps") else cm.get_cmap(cmap_key)
     colored_heatmap = colormap(heatmap)[:, :, :3]  # Drop alpha channel -> (H, W, 3) float in [0, 1]
     base_float = rgb_image.astype(np.float32) / 255.0
 

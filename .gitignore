@@ -59,6 +59,7 @@ outputs/checkpoints/*.onnx
 # Secrets & Environment Variables
 .env
 .env.*
+!.env.example
 *.pem
 *.key
 credentials.json

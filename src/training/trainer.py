@@ -120,6 +120,15 @@ class Trainer:
         epochs_no_improve = 0
         best_weights = copy.deepcopy(self.model.state_dict())
 
+        existing_best_val_acc = -1.0
+        if best_ckpt_path.exists():
+            try:
+                prev_ckpt = torch.load(best_ckpt_path, map_location="cpu", weights_only=False)
+                if prev_ckpt.get("architecture") == self.model.architecture:
+                    existing_best_val_acc = float(prev_ckpt.get("val_acc", -1.0))
+            except Exception:
+                existing_best_val_acc = -1.0
+
         history: List[Dict[str, Any]] = []
         total_params, _ = count_parameters(self.model)
         logger.info(
@@ -175,20 +184,22 @@ class Trainer:
                 epochs_no_improve = 0
                 best_weights = copy.deepcopy(self.model.state_dict())
 
-                torch.save(
-                    {
-                        "epoch": epoch,
-                        "architecture": self.model.architecture,
-                        "num_classes": self.model.num_classes,
-                        "class_names": self.config["data"]["class_names"],
-                        "model_input_size": self.config["data"]["model_input_size"],
-                        "val_acc": best_val_acc,
-                        "val_loss": best_val_loss,
-                        "model_state_dict": best_weights,
-                        "config": self.config,
-                    },
-                    best_ckpt_path,
-                )
+                if best_val_acc >= existing_best_val_acc:
+                    existing_best_val_acc = best_val_acc
+                    torch.save(
+                        {
+                            "epoch": epoch,
+                            "architecture": self.model.architecture,
+                            "num_classes": self.model.num_classes,
+                            "class_names": self.config["data"]["class_names"],
+                            "model_input_size": self.config["data"]["model_input_size"],
+                            "val_acc": best_val_acc,
+                            "val_loss": best_val_loss,
+                            "model_state_dict": best_weights,
+                            "config": self.config,
+                        },
+                        best_ckpt_path,
+                    )
             else:
                 epochs_no_improve += 1
                 if epochs_no_improve >= patience:

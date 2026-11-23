@@ -6,7 +6,7 @@
   "best_epoch": 6,
   "best_val_acc": 0.9556,
   "best_val_loss": 0.4295,
-  "total_training_time_sec": 871.21,
+  "total_training_time_sec": 477.43,
   "checkpoint_path": "outputs/checkpoints/best_eurosat_model.pth",
   "history": [
     {
@@ -17,7 +17,7 @@
       "val_loss": 1.87894,
       "val_acc": 0.45556,
       "lr": 0.0005,
-      "epoch_time_sec": 56.94
+      "epoch_time_sec": 32.21
     },
     {
       "epoch": 2,
@@ -27,7 +27,7 @@
       "val_loss": 1.63969,
       "val_acc": 0.52444,
       "lr": 0.0004812,
-      "epoch_time_sec": 60.78
+      "epoch_time_sec": 30.66
     },
     {
       "epoch": 3,
@@ -37,7 +37,7 @@
       "val_loss": 0.86636,
       "val_acc": 0.80222,
       "lr": 0.0004275,
-      "epoch_time_sec": 125.32
+      "epoch_time_sec": 72.06
     },
     {
       "epoch": 4,
@@ -47,7 +47,7 @@
       "val_loss": 0.61356,
       "val_acc": 0.91111,
       "lr": 0.0003472,
-      "epoch_time_sec": 123.68
+      "epoch_time_sec": 68.55
     },
     {
       "epoch": 5,
@@ -57,7 +57,7 @@
       "val_loss": 0.61313,
       "val_acc": 0.88222,
       "lr": 0.0002525,
-      "epoch_time_sec": 124.21
+      "epoch_time_sec": 70.67
     },
     {
       "epoch": 6,
@@ -67,7 +67,7 @@
       "val_loss": 0.42955,
       "val_acc": 0.95556,
       "lr": 0.0001578,
-      "epoch_time_sec": 132.96
+      "epoch_time_sec": 66.06
     },
     {
       "epoch": 7,
@@ -77,7 +77,7 @@
       "val_loss": 0.43899,
       "val_acc": 0.94667,
       "lr": 7.75e-05,
-      "epoch_time_sec": 125.39
+      "epoch_time_sec": 68.4
     },
     {
       "epoch": 8,
@@ -87,7 +87,7 @@
       "val_loss": 0.41216,
       "val_acc": 0.95111,
       "lr": 2.38e-05,
-      "epoch_time_sec": 121.34
+      "epoch_time_sec": 68.46
     }
   ]
 }
